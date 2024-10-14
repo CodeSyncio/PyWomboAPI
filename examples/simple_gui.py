@@ -1,3 +1,5 @@
+
+# this code is just an example, I coded this in a very ugly way just to demonstrate how it can be used.
 import os
 import asyncio
 import requests
@@ -6,7 +8,6 @@ from tkinter import ttk, messagebox
 from PyWomboAPI import WomboAPI
 
 def download_image(url, foldername, name):
-    # same function as in CLI example
     if not os.path.exists(foldername):
         os.makedirs(foldername)
     with open(os.path.join(foldername, name), 'wb') as file:
@@ -17,14 +18,10 @@ async def generate_images(style_id, prompt, image_amount):
     API.setup()
     foldername = prompt.replace(' ', '_')
 
-    async def generate_and_download(i):
-        result = await API.create_image(style_id, prompt)
+    async for result in API.create_image_batch(style_id, prompt, image_amount):
         image_url = result.url
-        download_image(image_url, foldername, f"image_{i}.jpg")
-        print(f"Downloaded image {i}: {image_url}")
-
-    tasks = [generate_and_download(i) for i in range(1, image_amount + 1)]
-    await asyncio.gather(*tasks)
+        download_image(image_url, foldername, f"image_{result.id}.jpg")
+        print(f"Downloaded image: {image_url}")
 
     messagebox.showinfo("Success", "Done generating and downloading images")
 

@@ -10,7 +10,6 @@ def download_image(url, foldername, name):
     with open(os.path.join(foldername, name), 'wb') as file:
         file.write(requests.get(url).content)
 
-
 async def main() -> None:
     API = WomboAPI()
     API.setup()
@@ -25,14 +24,12 @@ async def main() -> None:
 
     foldername = prompt.replace(' ', '_')
 
-    async def generate_and_download(index):
-        result = await API.create_image(style_id, prompt)
+    # Use create_image_batch to generate multiple images
+    async for result in API.create_image_batch(style_id, prompt, image_amount):
         image_url = result.url
-        download_image(image_url, foldername, f"image_{index}.jpg")
-        print(f"Downloaded image {index}: {image_url}")
-
-    tasks = [generate_and_download(i) for i in range(1, image_amount + 1)]
-    await asyncio.gather(*tasks)
+        download_image(image_url, foldername,
+                       f"image_{result.id}.jpg")
+        print(f"Downloaded image: {image_url}")
 
     print("Done generating and downloading images")
 
