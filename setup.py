@@ -5,6 +5,7 @@ setup(
     version='0.1.0',
     author='CodeSyncio',
     description='An unofficial Python library for generating images using Wombo.ai',
+    long_description_content_type='text/markdown',
     long_description=open('README.md').read(),
     url='https://github.com/CodeSyncio/PyWomboAPI',
     packages=find_packages(where='src'),

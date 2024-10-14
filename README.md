@@ -28,7 +28,7 @@ pip install PyWomboAPI
 
 ## Usage
 
-Here’s a quick example of how to use **PyWomboAPI** to make a request to the Wombo AI API:
+Here is a quick example of how to use **PyWomboAPI** to make a request to the Wombo AI API:
 
 ```python
 import asyncio
