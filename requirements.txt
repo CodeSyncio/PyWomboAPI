@@ -1,0 +1,6 @@
+requests~=2.31.0
+lxml~=4.9.1
+asyncio~=3.4.3
+dataclasses~=0.6
+aiohttp~=3.9.5
+setuptools~=67.8.0

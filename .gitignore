@@ -1,0 +1,8 @@
+/.idea
+/__pycache__
+/src/PyWomboAPI/__pycache__
+/Py
+/src/PyWomboAPI.egg-info
+/examples/my_package.log
+/src/PyWomboAPI/__pycache__
+src/PyWomboAPI/__pycache__/init.cpython-310.pyc
